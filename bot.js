@@ -198,7 +198,7 @@ client.on('message', function(message) {
 client.on('message', message => {
 let args = message.content.split(' ').slice(1);
 if(message.content.split(' ')[0] == 'لون'){
-if(message.channel.id !== "471966277196578818") return;
+if(message.channel.id !== "476708502790995968") return;
 const embedd = new Discord.RichEmbed()
 .setFooter('Requested by '+message.author.username, message.author.avatarURL)
 .setDescription(`لايوجد لون بهذا الرقم`)

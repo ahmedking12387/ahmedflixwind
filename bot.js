@@ -37,10 +37,10 @@ const prefix = 'م'
    if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'سح')) {
 if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**You Do not have permission** `ADMINISTRATOR`' );
+if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**ليس لديك الصلاحيات اللازمة ل استخدام هذا الامر** `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let request = `Requested By ${message.author.username}`;
-message.channel.send(`**Are You sure you want to clear the chat?**`).then(msg => {
+message.channel.send(`**هل انت متأكد من مسح الشات ؟**`).then(msg => {
 msg.react('✅')
 .then(() => msg.react('❌'))
 .then(() =>msg.react('✅'))
@@ -48,7 +48,7 @@ msg.react('✅')
 let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
 let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
 
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 15000 });
 let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
 reaction1.on("collect", r => {
 message.channel.send(`Chat will delete`).then(m => m.delete(5000));

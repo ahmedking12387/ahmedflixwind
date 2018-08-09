@@ -133,6 +133,36 @@ client.on('message', function(message) {
 
 
 
+client.on('message', message => {
+
+if (message.author.bot) return;
+    if (message.content === "اقفل الشات") {
+                        if(!message.channel.guild) return message.reply(' This command only for servers');
+
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(' ليس لديك صلاحيات');
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: false
+
+           }).then(() => {
+               message.reply("تم تقفيل الشات ✅ ")
+           });
+             }
+if (message.content === "افتح الشات") {
+    if(!message.channel.guild) return message.reply(' This command only for servers');
+
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('ليس لديك صلاحيات');
+           message.channel.overwritePermissions(message.guild.id, {
+         SEND_MESSAGES: true
+
+           }).then(() => {
+               message.reply("تم فتح الشات✅")
+           });
+             }
+
+
+
+});
+
 
 
 client.login(process.env.BOT_TOKEN);

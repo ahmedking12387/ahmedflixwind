@@ -180,7 +180,7 @@ client.on('message', function(message) {
     const embed500 = new Discord.RichEmbed()
       .setTitle(":x: | تمت معاقبتك")
             .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`wind bot`)
+      .addField(`by`,`Wind bot`)
             .setColor("000000")
             .setThumbnail(`${message.author.avatarURL}`)
             .setAuthor(message.author.username, message.author.avatarURL) 
@@ -195,33 +195,6 @@ client.on('message', function(message) {
 
 
 
-client.on('message', message => {
-let args = message.content.split(' ').slice(1);
-if(message.content.split(' ')[0] == 'لون'){
-if(message.channel.id !== "476708502790995968") return;
-const embedd = new Discord.RichEmbed()
-.setFooter('Requested by '+message.author.username, message.author.avatarURL)
-.setDescription(`لايوجد لون بهذا الرقم`)
-.setColor(`ff0000`)
-if(!isNaN(args) && args.length > 0)
-if(!(message.guild.roles.find("name",`${args}`))) return  message.channel.sendEmbed(embedd);
-var a = message.guild.roles.find("name",`${args}`)
-if(!a)return;
-const embed = new Discord.RichEmbed()                    
-.setFooter('Requested by '+message.author.username, message.author.avatarURL)
-.setDescription(`تم تغيير اللون بنجاح`)
-.setColor(`${a.hexColor}`)
-message.channel.sendEmbed(embed);
-if (!args)return;
-setInterval(function(){})
-let count = 0;
-let ecount = 0;
-for(let x = 1; x < 201; x++){
-message.member.removeRole(message.guild.roles.find("name",`${x}`))
-}
-message.member.addRole(message.guild.roles.find("name",`${args}`));
-}
-});
 
 
 

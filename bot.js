@@ -57,7 +57,7 @@ const prefix = 'م'
    if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'سح')) {
 if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**ليس لديك الصلاحيات اللازمة ل استخدام هذا الامر** `ADMINISTRATOR`' );
+if(!message.member.hasPermission('MANAGE_MESSAGE')) return      message.channel.send('**كس امك ماعندك برمشنات:no:** `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
 let request = `Requested By ${message.author.username}`;
 message.channel.send(`**هل انت متأكد من مسح الشات ؟**`).then(msg => {
@@ -77,7 +77,7 @@ var msg;
 
       message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
       message.channel.sendMessage("", {embed: {
-        title: "`` Chat Deleted ``",
+        title: "`` تم مسح الشات :white_check_mark: ``",
         color: 0x06DF00,
         footer: {
 
@@ -159,18 +159,18 @@ if (message.author.bot) return;
     if (message.content === "اقفل الشات") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(' ليس لديك صلاحيات');
+if(!message.member.hasPermission('MANAGE_MESSAGE')) return message.reply(' ليس لديك صلاحيات لقفل  الشات :slight_smile:');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
 
            }).then(() => {
-               message.reply("تم تقفيل الشات ✅ ")
+               message.reply("تم قفل الشات ✅ ")
            });
              }
 if (message.content === "افتح الشات") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('ليس لديك صلاحيات');
+if(!message.member.hasPermission('MANAGE_MESSAGE')) return message.reply(' ليس لديك صلاحيات لفتح الشات :slight_smile: ');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: true
 

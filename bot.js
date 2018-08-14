@@ -274,3 +274,9 @@ For additional help,  `)
          message.channel.send({embed:embed});
                         }
                     });
+
+
+
+
+client.login(process.env.BOT_TOKEN);
+

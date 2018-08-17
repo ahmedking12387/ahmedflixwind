@@ -418,7 +418,7 @@ client.on('message', message => {
   let args = message.content.split(" ").slice(1);
 
 // -say
-  if (command === "000 {
+  if (command === "000" {
           message.delete()
     message.channel.sendMessage(args.join(" ")).catch(console.error);
   }

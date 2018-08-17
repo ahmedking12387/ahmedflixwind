@@ -54,18 +54,23 @@ message.channel.send({embed:embed});
 
 
 
+ KiNg66S.on('message', function(KiNg66S) {
+if (KiNg66S.author.bot) return;
+if (KiNg66S.author.id === KiNg66S.user.id) return;
+if (KiNg66S.author.equals(KiNg66S.user)) return;
+if (!KiNg66S.content.startsWith(prefix)) return;
 
-  client.on("message", message => {
-    var prefix = "م";  
- 
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix + "سح")) {
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **انت لا تمتلك الصلاحيات **');
-        var msg;
-        msg = parseInt();
-      
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
+var args = KiNg66S.content.substring(prefix.length).split(' ');
+switch (args[0].toLocaleLowerCase()) {
+case "مسح" :
+KiNg66S.delete()
+if(!KiNg66S.channel.guild) return
+if(KiNg66S.member.hasPermissions(0x2000)){ if (!args[1]) {
+KiNg66S.channel.fetchMessages()
+.then(messages => {
+KiNg66S.channel.bulkDelete(messages);
+var messagesDeleted = messages.array().length;
+  message.channel.sendMessage("", {embed: {
         title: "Done | تــم",
         color: 0x06DF00,
         description: "تم مسح الشات ✅",
@@ -74,9 +79,31 @@ message.channel.send({embed:embed});
         }
       }}).then(msg => {msg.delete(3000)});
                           }
-
-     
+})
+} else {
+let messagecount = parseInt(args[1]);
+KiNg66S.channel.fetchMessages({limit: messagecount}).then(messages => KiNg66S.channel.bulkDelete(messages));
+  message.channel.sendMessage("", {embed: {
+        title: "Done | تــم",
+        color: 0x06DF00,
+        description: "تم مسح الشات ✅",
+        footer: {
+          text: "**Wind Bot**" // غير هنا حط اسم البوت
+        }
+      }}).then(msg => {msg.delete(3000)});
+                          }
+KiNg66S.delete(60000);
+}
+} else {
+var manage = new Discord.RichEmbed()
+.setDescription('You Do Not Have Permission MANAGE_MESSAGES :(')
+.setColor("RANDOM")
+KiNg66S.channel.sendEmbed(manage)
+return;
+}
+}
 });
+  
   
 
 

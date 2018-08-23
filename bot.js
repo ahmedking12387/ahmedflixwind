@@ -55,45 +55,29 @@ message.channel.send({embed:embed});
 
 
 client.on('message', message => {
-	var prefix = "+";
-   if(!message.channel.guild) return;
-if(message.content.startsWith(prefix + 'clear')) {
-if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**يجب توفر البرمشن الخاص لديك** `MANAGE_MESSAGES`' );
-let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let request = `Requested By ${message.author.username}`;
-message.channel.send(`**هل انت متاكد من مسح الشات اذا ترد مسح الشات اضغط على :white_check_mark:**`).then(msg => {
-msg.react('✅')
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-message.channel.send(`جاري مسح الشات`).then(m => m.delete(5000));
-var msg;
-        msg = parseInt();
-
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "``تم مسح الشات  ``",
-        color: 0x06DF00,
-        footer: {
-
-        }
-      }}).then(msg => {msg.delete(3000)});
-
-})
-reaction2.on("collect", r => {
-message.channel.send(`**Chat deletion cancelled**`).then(m => m.delete(5000));
-msg.delete();
-})
-})
-}
-});
+    if (message.content.startsWith(prefix + 'clear')) {
+      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات الازمة لهذا الامر `).catch(console.error);
+  message.delete()
+  if(!message.channel.guild) return;
+  let args = message.content.split(" ").slice(1);
+  
+  const messagecount = parseInt(args.join(' '));
+  
+  message.channel.fetchMessages({
+  
+  limit: messagecount
+  
+  }).then(messages => message.channel.bulkDelete(messages));
+  message.channel.sendMessage("", {embed: {
+    title: "``✏️✅ تــم مسح الشات ``",
+    color: 0x06DF00,
+    footer: {
+    
+    }
+    }}).then(msg => {msg.delete(3000)});
+  };
+  
+  });
 
  
   
@@ -174,28 +158,28 @@ client.user.setGame(args , '');
 
 
 client.on('message', message => {
-    var prefix = "+";
+
 if (message.author.bot) return;
-    if (message.content === "chatm") {
+    if (message.content === "rmutechannel") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('MANAGE_MESSAGE')) return message.reply(' ليس لديك صلاحيات لقفل  الشات :slight_smile:');
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' انت لاتمتلك الصلاحبات الازمة لهذا الامر');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
 
            }).then(() => {
-               message.reply("تم قفل الشات ✅ ")
+               message.reply("تم اقفال الشات بنجاح  ✅ ")
            });
              }
-if (message.content === "chatmm") {
+if (message.content === "runmutechannel") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
-if(!message.member.hasPermission('MANAGE_MESSAGE')) return message.reply(' ليس لديك صلاحيات لفتح الشات :slight_smile: ');
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لاتمتلك الصلاحبات الازمة لهذا الامر');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: true
 
            }).then(() => {
-               message.reply("تم فتح الشات✅")
+               message.reply("تم فتح الشات بنجاح✅")
            });
              }
 
@@ -278,30 +262,45 @@ client.on('message', message => {
 
 
 
+client.on('message', message => { 
+var prefix = "+";
 
-
-
-
+if (message.author.boss) return;
+if (!message.content.startsWith(prefix)) return;
+let command = message.content.split(" ")[0];
+command = command.slice(prefix.length);
+if (command == "roleadd") {
+if (!message.channel.guild) return;
+if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
+let MRole = message.content.split(" ")[1];
+if(!MRole)return message.reply("يجب عليك وضع اسم الرتبة").then(msg => {msg.delete(5000)});
+message.guild.members.forEach(m => {
+m.addRole(message.guild.roles.find('name', MRole))
+})
+message.reply('*** Done ✅  ***').then(msg => {msg.delete(10000)});
+}
+});
 
 client.on('message', message => { 
-    var prefix = "+";
-    if (message.author.boss) return;
-    if (!message.content.startsWith(prefix)) return;
-    let command = message.content.split(" ")[0];
-    command = command.slice(prefix.length);
-    if (command == "roleadd") {
-    if (!message.channel.guild) return;
-    if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**:no_entry_sign:انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
-    if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
-    let user = message.mentions.users.first();
-    if (message.mentions.users.size < 1) return message.reply('**ضع منشن الشخص!!**').then(msg => {msg.delete(5000)});
-    let MRole = message.content.split(" ").slice(2).join(" ");
-    if(!MRole)return message.reply("يجب عليك وضع اسم الرتبة").then(msg => {msg.delete(5000)});
-    message.guild.member(user).addRole(message.guild.roles.find("name", MRole));
-    message.reply('*** Done :white_check_mark:  ***').then(msg => {msg.delete(10000)});
-    }
-    });
+var prefix = "+";
 
+if (message.author.boss) return;
+if (!message.content.startsWith(prefix)) return;
+let command = message.content.split(" ")[0];
+command = command.slice(prefix.length);
+if (command == "roleremove") {
+if (!message.channel.guild) return;
+if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
+let MRole = message.content.split(" ")[1];
+if(!MRole)return message.reply("يجب عليك وضع اسم الرتبة").then(msg => {msg.delete(5000)});
+message.guild.members.forEach(m => {
+m.removeRole(message.guild.roles.find('name', MRole))
+})
+message.reply('*** Done ✅  ***').then(msg => {msg.delete(10000)});
+}
+});
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -403,6 +402,17 @@ client.user.setGame(args , '');
 
 
 
+var KinG66S = {};
+client.on('guildMemberRemove', member => {
+KinG66S[member.id] = {roles: member.roles.array()};
+});
+client.on('guildMemberAdd', member => {
+if(!KinG66S[member.user.id]) return;
+console.log(KinG66S[member.user.id].roles.length);
+for(let i = 0; i < KinG66S[member.user.id].roles.length + 1; i++) {
+member.addRole(KinG66S[member.user.id].roles.shift());
+}
+});
 
 
 

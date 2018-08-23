@@ -410,4 +410,19 @@ member.addRole(KinG66S[member.user.id].roles.shift());
 
 
 
+
+const antispam = require("discord-anti-spam");
+antispam([client], {
+  warnBuffer: 3, 
+  maxBuffer: 2, 
+  interval: 1000, 
+  warningMessage: "warning msg.", 
+  banMessage: "has been banned for spamming, anyone else?", 
+  maxDuplicatesWarning: 7,
+  maxDuplicatesBan: 10,
+  deleteMessagesAfterBanForPastDays: 7  
+});
+
+
+
 client.login(process.env.BOT_TOKEN);

@@ -56,7 +56,7 @@ message.channel.send({embed:embed});
 
 client.on('message', message => {
     if (message.content.startsWith(prefix + 'clear')) {
-      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات الازمة لهذا الامر `).catch(console.error);
+      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
   message.delete()
   if(!message.channel.guild) return;
   let args = message.content.split(" ").slice(1);
@@ -158,9 +158,9 @@ client.user.setGame(args , '');
 
 
 client.on('message', message => {
-
+const prefix = '+'
 if (message.author.bot) return;
-    if (message.content === "rmutechannel") {
+    if (message.content === "wmutechannel") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' انت لاتمتلك الصلاحبات الازمة لهذا الامر');
@@ -168,10 +168,10 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ان
          SEND_MESSAGES: false
 
            }).then(() => {
-               message.reply("تم اقفال الشات بنجاح  ✅ ")
+               message.reply("تم قفل الشات بنجاح  ✅ ")
            });
              }
-if (message.content === "runmutechannel") {
+if (message.content === "wunmutechannel") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لاتمتلك الصلاحبات الازمة لهذا الامر');
@@ -186,7 +186,6 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ان�
 
 
 });
-
 
 
 
@@ -248,9 +247,6 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
     }
 });
-
-
-
 
 
 

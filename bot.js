@@ -55,7 +55,8 @@ message.channel.send({embed:embed});
 
 
 client.on('message', message => {
-    if (message.content.startsWith(prefix + 'clear')) {
+	const prefix = 'م'
+    if (message.content.startsWith(prefix + 'سح')) {
       if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
   message.delete()
   if(!message.channel.guild) return;
@@ -69,7 +70,7 @@ client.on('message', message => {
   
   }).then(messages => message.channel.bulkDelete(messages));
   message.channel.sendMessage("", {embed: {
-    title: "``✏️✅ تــم مسح الشات ``",
+    title: "``✅ تــم مسح الشات ``",
     color: 0x06DF00,
     footer: {
     
@@ -158,9 +159,8 @@ client.user.setGame(args , '');
 
 
 client.on('message', message => {
-const prefix = '+'
 if (message.author.bot) return;
-    if (message.content === "wmutechannel") {
+    if (message.content === "اقفل الشات") {
                         if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' انت لاتمتلك الصلاحبات الازمة لهذا الامر');
@@ -171,7 +171,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ان
                message.reply("تم قفل الشات بنجاح  ✅ ")
            });
              }
-if (message.content === "wunmutechannel") {
+if (message.content === "افتح الشات") {
     if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لاتمتلك الصلاحبات الازمة لهذا الامر');
@@ -232,7 +232,7 @@ client.on('message', function(message) {
 
 
 client.on('message', message => {
-    if (message.content.startsWith("+avatar")) {
+    if (message.content.startsWith("افتار")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -259,13 +259,13 @@ client.on('message', message => {
 
 
 client.on('message', message => { 
-var prefix = "+";
+var prefix = "ص";
 
 if (message.author.boss) return;
 if (!message.content.startsWith(prefix)) return;
 let command = message.content.split(" ")[0];
 command = command.slice(prefix.length);
-if (command == "roleadd") {
+if (command == "لاحية") {
 if (!message.channel.guild) return;
 if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
 if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
@@ -279,13 +279,13 @@ message.reply('*** Done ✅  ***').then(msg => {msg.delete(10000)});
 });
 
 client.on('message', message => { 
-var prefix = "+";
+var prefix = "ص";
 
 if (message.author.boss) return;
 if (!message.content.startsWith(prefix)) return;
 let command = message.content.split(" ")[0];
 command = command.slice(prefix.length);
-if (command == "roleremove") {
+if (command == "لاحية") {
 if (!message.channel.guild) return;
 if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
 if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
@@ -320,9 +320,7 @@ embed.addField(":cloud_tornado:  الاسم", `**[ ${msg.author.username}#${msg.
    .setTimestamp()
    .setURL(`${msg.author.avatarURL}`)
    .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
-   .addField(':satellite_orbital:   يلعب', `**[ ${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name} ]**`, true)
    .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
-   .addField(':robot:  هل هو بوت', `**[ ${msg.author.bot.toString().toUpperCase()} ]**`, true);
 msg.channel.send({embed: embed})
 }
 });

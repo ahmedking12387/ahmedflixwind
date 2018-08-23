@@ -105,7 +105,7 @@ msg.delete();
 
 
 client.on('message', function(message) {
-	const myID = "302354407864139777";
+	const myID = "279194403564814336";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "setname")) {
 		        if(message.author.id !== myID) return;

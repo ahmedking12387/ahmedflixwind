@@ -3,8 +3,6 @@ const client = new Discord.Client();
 const prefix = '+'
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Nothing`,"http://twitch.tv/A_K")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -118,7 +116,14 @@ client.on('message', function(message) {
     } else if(message.content.startsWith(prefix + "stream")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setGame(args , 'https://twitch.tv/6xlez1');
+        client.user.setGame(args , 'https://twitch.tv/LOP');
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(5000);
+          message.delete(5000);
+        });
+    } else if(message.content.startsWith(prefix + "offstatus")) {
+                if(message.author.id !== myID) return;
+client.user.setGame(args , '');
         message.channel.send(':white_check_mark: Done!').then(msg => {
            msg.delete(5000);
           message.delete(5000);
@@ -426,7 +431,14 @@ client.on('message', function(message) {
     } else if(message.content.startsWith(prefix + "stream")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setGame(args , 'https://twitch.tv/6xlez1');
+        client.user.setGame(args , 'https://twitch.tv/LOP');
+        message.channel.send(':white_check_mark: Done!').then(msg => {
+           msg.delete(5000);
+          message.delete(5000);
+        });
+    } else if(message.content.startsWith(prefix + "offstatus")) {
+                if(message.author.id !== myID) return;
+client.user.setGame(args , '');
         message.channel.send(':white_check_mark: Done!').then(msg => {
            msg.delete(5000);
           message.delete(5000);
@@ -466,14 +478,8 @@ client.on('message', function(message) {
     }
 });
 
-client.on('message',function(message) {
-	let prefix = "-";
-let args = message.content.split(" ").slice(1).join(" ");
-if(message.content.startsWith(prefix + "say")) {
-if(!args) return;
-message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخدم البوت لتبنيد / طرد احد من السيرفر
-}
-});
+
+
 
 
 

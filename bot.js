@@ -105,13 +105,12 @@ msg.delete();
 
 
 
-
 client.on('message', function(message) {
-const devs = ['279194403564814336','302354407864139777'];
+	const myID = ['279194403564814336','302354407864139777'];
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "setname")) {
 		        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+            if(!args) return message.reply('اكتب الاسم الذي تريده.');
         client.user.setUsername(args);
         message.channel.send(':white_check_mark: Done!').then(msg => {
            msg.delete(5000);
@@ -120,7 +119,7 @@ const devs = ['279194403564814336','302354407864139777'];
     } else if(message.content.startsWith(prefix + "stream")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setGame(args , 'https://twitch.tv/A_K');
+        client.user.setGame(args , 'https://twitch.tv/6xlez1');
         message.channel.send(':white_check_mark: Done!').then(msg => {
            msg.delete(5000);
           message.delete(5000);
@@ -153,7 +152,7 @@ const devs = ['279194403564814336','302354407864139777'];
 				        if(message.author.id !== myID) return;
         client.user.setAvatar(args);
         message.channel.send(':white_check_mark: Done!').then(msg => {
-                if(!args) return message.reply('اكتب الحالة اللي تريدها.');
+                if(!args) return message.reply('اكتب رابط الصوره اللي تريدها.');
            msg.delete(5000);
           message.delete(5000);
         });

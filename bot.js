@@ -57,6 +57,7 @@ message.channel.send({embed:embed});
 client.on('message', message => {
 	const prefix = 'م'
     if (message.content.startsWith(prefix + 'سح')) {
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
       if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
   message.delete()
   if(!message.channel.guild) return;
@@ -233,6 +234,7 @@ client.on('message', function(message) {
 
 client.on('message', message => {
     if (message.content.startsWith("افتار")) {
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -258,45 +260,6 @@ client.on('message', message => {
 
 
 
-client.on('message', message => { 
-var prefix = "ص";
-
-if (message.author.boss) return;
-if (!message.content.startsWith(prefix)) return;
-let command = message.content.split(" ")[0];
-command = command.slice(prefix.length);
-if (command == "لاحية") {
-if (!message.channel.guild) return;
-if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
-let MRole = message.content.split(" ")[1];
-if(!MRole)return message.reply("يجب عليك وضع اسم الرتبة").then(msg => {msg.delete(5000)});
-message.guild.members.forEach(m => {
-m.addRole(message.guild.roles.find('name', MRole))
-})
-message.reply('*** Done ✅  ***').then(msg => {msg.delete(10000)});
-}
-});
-
-client.on('message', message => { 
-var prefix = "ص";
-
-if (message.author.boss) return;
-if (!message.content.startsWith(prefix)) return;
-let command = message.content.split(" ")[0];
-command = command.slice(prefix.length);
-if (command == "لاحية") {
-if (!message.channel.guild) return;
-if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return message.reply("**🚫انت لا تملك صلاحيات **").then(msg => msg.delete(5000));;
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
-let MRole = message.content.split(" ")[1];
-if(!MRole)return message.reply("يجب عليك وضع اسم الرتبة").then(msg => {msg.delete(5000)});
-message.guild.members.forEach(m => {
-m.removeRole(message.guild.roles.find('name', MRole))
-})
-message.reply('*** Done ✅  ***').then(msg => {msg.delete(10000)});
-}
-});
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------

@@ -56,42 +56,48 @@ message.channel.send({embed:embed});
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 
+client.on('message', message => {
+	var prefix = "+";
+   if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'clear')) {
+if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**يجب توفر البرمشن الخاص لديك** `MANAGE_MESSAGES`' );
+let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+let request = `Requested By ${message.author.username}`;
+message.channel.send(`**هل انت متاكد من مسح الشات اذا ترد مسح الشات اضغط على :white_check_mark:**`).then(msg => {
+msg.react('✅')
+.then(() => msg.react('❌'))
+.then(() =>msg.react('✅'))
 
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
 
-  KiNg66S.on('message', function(KiNg66S) {
-if (KiNg66S.author.bot) return;
-if (KiNg66S.author.id === KiNg66S.user.id) return;
-if (KiNg66S.author.equals(KiNg66S.user)) return;
-if (!KiNg66S.content.startsWith(prefix)) return;
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+message.channel.send(`جاري مسح الشات`).then(m => m.delete(5000));
+var msg;
+        msg = parseInt();
 
-var args = KiNg66S.content.substring(prefix.length).split(' ');
-switch (args[0].toLocaleLowerCase()) {
-case "مسح" :
-KiNg66S.delete()
-if(!KiNg66S.channel.guild) return
-if(KiNg66S.member.hasPermissions(0x2000)){ if (!args[1]) {
-KiNg66S.channel.fetchMessages()
-.then(messages => {
-KiNg66S.channel.bulkDelete(messages);
-var messagesDeleted = messages.array().length;
-KiNg66S.channel.sendMessage(' '+ " " + messagesDeleted + " " +  '**: عدد الرسائل التي تم مسحه**').then(m => m.delete(2500));
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "``تم مسح الشات  ``",
+        color: 0x06DF00,
+        footer: {
+
+        }
+      }}).then(msg => {msg.delete(3000)});
+
 })
-} else {
-let messagecount = parseInt(args[1]);
-KiNg66S.channel.fetchMessages({limit: messagecount}).then(messages => KiNg66S.channel.bulkDelete(messages));
-KiNg66S.channel.sendMessage(' '+ " " + args[1] + " " +  '**: عدد الرسائل التي تم مسحه**').then(m => m.delete(2500));
-KiNg66S.delete(60000);
-}
-} else {
-var manage = new Discord.RichEmbed()
-.setDescription('You Do Not Have Permission MANAGE_MESSAGES :(')
-.setColor("RANDOM")
-KiNg66S.channel.sendEmbed(manage)
-return;
-}
+reaction2.on("collect", r => {
+message.channel.send(`**Chat deletion cancelled**`).then(m => m.delete(5000));
+msg.delete();
+})
+})
 }
 });
-  
+
+ 
   
 //--------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------- كودالتغيير الحاللات  ----------------------------------------------------------------------

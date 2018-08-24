@@ -28,30 +28,6 @@ client.on('ready', () => {
 
 
 
-//--------------------------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------- كودالبنق ----------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------------------
-
-
-client.on('message', message => {
-    if(!message.channel.guild) return message.reply('** This command only for servers**');
-      if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
-    if(!message.channel.guild) return;
-if (message.content.startsWith('+ping')) {
-if(!message.channel.guild) return;
-var msg = `${Date.now() - message.createdTimestamp}`
-var api = `${Math.round(client.ping)}`
-if (message.author.bot) return;
-let embed = new Discord.RichEmbed()
-.setAuthor(message.author.username,message.author.avatarURL)
-.setColor('RANDOM')
-.addField('**Time Taken:**',msg + " ms :signal_strength: ")
-message.channel.send({embed:embed});
-
-
-}
-});
-
 
 //--------------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------- كودالمسح ----------------------------------------------------------------------

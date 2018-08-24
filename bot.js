@@ -51,8 +51,6 @@ client.on('message', message => {
       message.delete();
 
            if(!message.channel.guild) return message.reply('** This command only for servers**');
-      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
-  message.delete()
   if(!message.channel.guild) return;
   let args = message.content.split(" ").slice(1);
   const messagecount = parseInt(args.join(' '));

@@ -35,8 +35,21 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
-	const prefix = 'م'
-    if (message.content.startsWith(prefix + 'سح')) {
+ 
+	if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+	
+  if (command == "مسح") {
+  let rank = message.guild.member(message.author).roles.find('name', 'clear');
+  if (!rank) return message.reply('انت لا تمتلك الرتبه المخصصه لهذا الامر')
+      message.delete();
+
            if(!message.channel.guild) return message.reply('** This command only for servers**');
       if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
   message.delete()

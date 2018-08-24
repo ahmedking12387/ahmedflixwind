@@ -35,7 +35,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
- 
+ const prefix = 'م'
 	if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -45,7 +45,7 @@ client.on('message', message => {
 
   let args = message.content.split(" ").slice(1);
 	
-  if (command == "مسح") {
+  if (command == "سح") {
   let rank = message.guild.member(message.author).roles.find('name', 'clear');
   if (!rank) return message.reply('انت لا تمتلك الرتبه المخصصه لهذا الامر')
       message.delete();

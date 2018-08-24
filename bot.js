@@ -35,6 +35,7 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
+               if(!message.channel.guild) return message.reply('');
  const prefix = 'م'
 	if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
@@ -50,7 +51,6 @@ client.on('message', message => {
   if (!rank) return message.reply('انت لا تمتلك الرتبه المخصصه لهذا الامر')
       message.delete();
 
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
   if(!message.channel.guild) return;
   let args = message.content.split(" ").slice(1);
   const messagecount = parseInt(args.join(' '));
@@ -147,10 +147,9 @@ client.user.setGame(args , '');
 
 
 client.on('message', message => {
+	               if(!message.channel.guild) return message.reply('');
 if (message.author.bot) return;
     if (message.content === "اقفل الشات") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' انت لاتمتلك الصلاحبات الازمة لهذا الامر');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
@@ -188,11 +187,11 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ان�
 
 
 client.on('message', function(message) {
+	               if(!message.channel.guild) return message.reply('');
     if (!message.member.hasPermissions(['ADMINISTRATOR'])){
             let command = message.content.split(" ")[0];
         if(message.content.includes('discord.gg')){
         message.reply (' ')
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
      message.member.addRole(message.guild.roles.find('name', 'BlackList')); 
     const embed500 = new Discord.RichEmbed()
       .setTitle(":x: | تمت معاقبتك")
@@ -220,6 +219,7 @@ client.on('message', function(message) {
 
 
 client.on('message', message => {
+	               if(!message.channel.guild) return message.reply('');
     if (message.content.startsWith("افتار")) {
            if(!message.channel.guild) return message.reply('** This command only for servers**');
         var mentionned = message.mentions.users.first();

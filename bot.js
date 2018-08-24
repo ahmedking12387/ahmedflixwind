@@ -52,7 +52,7 @@ client.on('message', message => {
     footer: {
     }
     }}).then(msg => {msg.delete(3000)});
- console.log('clear [ " ${client.user.username} " ]')  
+ console.log('clear [ " ${تم مسح الشات} " ]')  
 };
   
   });

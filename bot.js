@@ -34,6 +34,10 @@ client.on('ready', () => {
 
 
 client.on('message', message => {
+    if(!message.channel.guild) return message.reply('** This command only for servers**');
+      if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
+  message.delete()
+
     if(!message.channel.guild) return;
 if (message.content.startsWith('+ping')) {
 if(!message.channel.guild) return;

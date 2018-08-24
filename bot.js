@@ -36,8 +36,6 @@ client.on('ready', () => {
 client.on('message', message => {
     if(!message.channel.guild) return message.reply('** This command only for servers**');
       if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply(`انت لاتمتلك الصلاحيات اللازمة لهذا الامر `).catch(console.error);
-  message.delete()
-
     if(!message.channel.guild) return;
 if (message.content.startsWith('+ping')) {
 if(!message.channel.guild) return;
@@ -49,6 +47,8 @@ let embed = new Discord.RichEmbed()
 .setColor('RANDOM')
 .addField('**Time Taken:**',msg + " ms :signal_strength: ")
 message.channel.send({embed:embed});
+
+
 }
 });
 
@@ -66,22 +66,18 @@ client.on('message', message => {
   message.delete()
   if(!message.channel.guild) return;
   let args = message.content.split(" ").slice(1);
-  
   const messagecount = parseInt(args.join(' '));
-  
   message.channel.fetchMessages({
-  
   limit: messagecount
-  
   }).then(messages => message.channel.bulkDelete(messages));
   message.channel.sendMessage("", {embed: {
     title: "``✅ تــم مسح الشات ``",
     color: 0x06DF00,
     footer: {
-    
     }
     }}).then(msg => {msg.delete(3000)});
-  };
+ console.log('clear [ " ${client.user.username} " ]')  
+};
   
   });
 

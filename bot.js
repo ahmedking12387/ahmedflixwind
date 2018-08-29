@@ -27,25 +27,7 @@ client.on('ready', () => {
 });
 
 
-client.on("ready", () => {
-    client.user.setPresence({
-      status: 'invisible',
-      game: { 
-         type: 0,
-         name: 'Surprise Mother Fucker :) ',
-         details: `I'm : KBOOSH - Developer and Programmer`,
-         url: 'http://twitch.tv/Streammingg',
-         state: `إنْ لَمْ تَجِد لكْ حآقدْ إعلمْ أنْك إنسآن فآشِلْ`,
-        application_id: '411924116333920266',
-         assets: {
-            small_image: `a_k1`,
-            small_text: ' Take This ! ' ,
-            large_image: `a_k2`,
-            large_text: `ҜṦẰ FOREVER ♥` }
-    
-      }
-        });
-    });
+
     
 
   client.on("message", message => {

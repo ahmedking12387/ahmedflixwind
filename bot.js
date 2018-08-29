@@ -36,11 +36,11 @@ client.on("ready", () => {
          details: `I'm : KBOOSH - Developer and Programmer`,
          url: 'http://twitch.tv/Streammingg',
          state: `إنْ لَمْ تَجِد لكْ حآقدْ إعلمْ أنْك إنسآن فآشِلْ`,
-        application_id: '281376075802476544',
+        application_id: '411924116333920266',
          assets: {
-            small_image: `366835431037337600`,
+            small_image: `a_k1`,
             small_text: ' Take This ! ' ,
-            large_image: `370451271133429760`,
+            large_image: `a_k2`,
             large_text: `ҜṦẰ FOREVER ♥` }
     
       }

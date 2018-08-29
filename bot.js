@@ -37,10 +37,9 @@ client.on('ready', () => {
 
 .addField('**عدد اعضاء السيرفر 👤 **' , `${message.guild.memberCount}`)
 .addField('**اونر السيرفر 👑**' , `${message.guild.owner.user.username}`)
-.addField(`**الرومات :scroll: **`,true)
-.addField(`# الكتابية`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
-.addField( `:loud_sound: الصوتية`,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-.addField(`**عدد الرتب**:briefcase:`,`${message.guild.roles.size}`)
+.addField(`-----------------------------------------`,true)
+.addField(`الرومات الكتابية :pen_fountain: `, `${message.guild.channels.filter(m => m.type === 'text').size}`)
+.addField( `الرومات الصوتية :microphone2: `,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
         message.channel.send({embed:embed})
     }
 });

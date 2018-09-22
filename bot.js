@@ -26,15 +26,7 @@ client.on('ready', () => {
   console.log('')
 });
 
-client.on('message', message => {
-    if(message.channel.type === 'dm') {
-        var guildID = '475600365698547712'; 
-        if(message.content.includes('discord.gg/')) {
-            var member = client.guilds.find(g => g.id === guildID).members.find(m => m.id === message.author.id);
-            member.ban({ reason: 'نشر ب الخاص' }).catch();
-        }
-    }
-});
+
 
 
 

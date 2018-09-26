@@ -717,39 +717,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 
-client.on('message', message => {
-               if(!message.channel.guild) return message.reply('');
- const prefix = 'م'
-	if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
 
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-	
-  if (command == "سح") {
-  let rank = message.guild.member(message.author).roles.find('name', 'clear');
-  if (!rank) return message.reply('انت لا تمتلك الرتبه المخصصه لهذا الامر')
-      message.delete();
-
-  if(!message.channel.guild) return;
-  let args = message.content.split(" ").slice(1);
-  const messagecount = parseInt(args.join(' '));
-  message.channel.fetchMessages({
-  limit: messagecount
-  }).then(messages => message.channel.bulkDelete(messages));
-  message.channel.sendMessage("", {embed: {
-    title: "``✅ تــم مسح الشات ``",
-    color: 0x06DF00,
-    footer: {
-    }
-    }}).then(msg => {msg.delete(3000)});
- console.log('clear [ " ${تم مسح الشات} " ]')  
-};
-  
-  });
 
  
   
@@ -826,36 +794,6 @@ client.user.setGame(args , '');
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-client.on('message', message => {
-	               if(!message.channel.guild) return message.reply('');
-if (message.author.bot) return;
-    if (message.content === "اقفل الشات") {
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' انت لاتمتلك الصلاحبات الازمة لهذا الامر');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-
-           }).then(() => {
-               message.reply("تم قفل الشات بنجاح  ✅ ")
-           });
-             }
-if (message.content === "افتح الشات") {
-    if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('انت لاتمتلك الصلاحبات الازمة لهذا الامر');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-
-           }).then(() => {
-               message.reply("تم فتح الشات بنجاح✅")
-           });
-             }
-
-
-
-});
 
 
 

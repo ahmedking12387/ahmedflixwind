@@ -625,88 +625,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
         logChannel.send(voiceLeave);
     }
 });
- client.on('message', async message => {
-    let args = message.content.split(" ");
-    let command = args[0];
 
-    if(command === prefix + 'tempban') {
-      if(!message.member.hasPermission("BAN_MEMBERS")) return message.reply('انت لا تملك الصلاحيات اللازمة').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-	    
-      if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply('انا لا املك الصلاحيات اللازمة. يحب توفر صلاحيات `Ban Members , Embed Links`').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-      let mention = message.mentions.members.first();
-      if(!mention) return message.reply('**منشن عضو لطرده**').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-      if(mention.highestRole.position >= message.guild.member(message.author).highestRole.positon) return message.reply('**لا يمكنك طرد شخص رتبته اعلى منك**').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-      if(mention.highestRole.positon >= message.guild.member(client.user).highestRole.positon) return message.reply('**لا يمكنني طرد شخص رتبته اعلى مني**').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-      if(mention.id === message.author.id) return message.reply('**لا يمكنك طرد  نفسك**').then(msg => {
-        msg.delete(3500);
-        message.delete(3500);
-      });
-
-       let duration = args[2];
-       if(!duration) return message.reply('**حدد وقت زمني لفك البان عن الشخص**').then(msg => {
-         msg.delete(3500);
-         message.delete(3500);
-       });
-       if(isNaN(duration)) return message.reply('**حدد وقت زمني صحيح**').then(msg => {
-         msg.delete(3500);
-         message.delete(3500);
-       });
-
-       let reason = message.content.split(" ").slice(3).join(" ");
-       if(!reason) reason = 'غير محدد';
-
-       let thisEmbed = new Discord.RichEmbed()
-       .setAuthor(mention.user.username , mention.user.avatarURL)
-       .setTitle('لقد تبندت من سيرفر')
-       .setThumbnail(mention.avatarURL)
-       .addField('# - السيرفر:',message.guild.name,true)
-       .addField('# - تم طردك بواسطة',message.author,true)
-       .addField('# - السبب',reason)
-       .setFooter(message.author.tag,message.author.avatarURL);
-       mention.send(thisEmbed).then(() => {
-       mention.ban({
-         reason: reason,
-       });
-       message.channel.send(`**:white_check_mark: ${mention.user.username} banned from the server ! :airplane: **  `)
-       setTimeout(() => {
-         if(duration === 0) return;
-         message.guild.unban(mention);
-       },duration * 60000);
-     });
-   }
-});   
-
-  client.on("message", message => {
-    if(message.content.startsWith(prefix + "server")) {
-        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**ليس لديك البرمشن المطلوب لاستخدام هذا الامر ❌**");
-        const embed = new Discord.RichEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL)
-        .setColor("#6d0c2a")
-
-.addField('**عدد اعضاء السيرفر 👤 **' , `${message.guild.memberCount}`)
-.addField('**اونر السيرفر 👑**' , `${message.guild.owner.user.username}`)
-.addField(``,true)
-.addField(`===========================================================`,true)
-.addField(`الرومات الكتابية :pen_fountain: `, `${message.guild.channels.filter(m => m.type === 'text').size}`)
-.addField( `الرومات الصوتية :microphone2: `,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-        message.channel.send({embed:embed})
-    }
-});
 
 
 
@@ -857,26 +776,6 @@ client.on('message', message => {
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-client.on("message", msg => {
-    var prefix = "+";
-if(msg.content.startsWith (prefix + "id")) {
-if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
-const embed = new Discord.RichEmbed();
-embed.addField(":cloud_tornado:  الاسم", `**[ ${msg.author.username}#${msg.author.discriminator} ]**`, true)
-   .addField(":id:  الايدي", `**[ ${msg.author.id} ]**`, true)
-   .setColor("RANDOM")
-   .setFooter(msg.author.username , msg.author.avatarURL)
-   .setThumbnail(`${msg.author.avatarURL}`)
-   .setTimestamp()
-   .setURL(`${msg.author.avatarURL}`)
-   .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
-   .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
-msg.channel.send({embed: embed})
-}
-});
 
 
 
